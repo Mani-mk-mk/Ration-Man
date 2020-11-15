@@ -1,0 +1,69 @@
+nav.navbar {
+  background-color: forestgreen;
+}
+
+.navbar-brand {
+  color: white;
+  text-shadow: 1px 1px 1px gray;
+}
+
+br {
+  color: black;
+}
+
+a.nav-link {
+  font-size: 25px;
+  color: white;
+  text-shadow: 0.5px 0.5px 0.5px gray;
+}
+
+a.dropdown-item {
+  font-size: 20px;
+}
+
+a.dropdown-item:hover {
+  background-color: forestgreen;
+  color: white;
+}
+
+a.nav-link:hover {
+  background-color: black;
+  opacity: 0.6;
+  color: white;
+}
+
+a.navbar-brand:hover {
+  color: white;
+  text-decoration: none;
+}
+
+button.btn {
+  background-color: rgb(238, 228, 230);
+  border: 2px solid rgb(69, 69, 248);
+}
+
+button.navbar-toggler {
+  background-color: white;
+  border: 1px solid rgb(186, 236, 135);
+  border-radius: 5px;
+}
+
+.butin {
+  background-color: white;
+  width: 30px;
+  height: 30px;
+}
+
+span.navbar-toggler-icon {
+  width: 30px;
+  height: 5px;
+  display: block;
+  margin-bottom: 5px;
+  background-color: lawngreen;
+  border: 1px solid gray;
+}
+h2 {
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+}
