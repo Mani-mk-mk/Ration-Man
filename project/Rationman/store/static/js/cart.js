@@ -4,8 +4,7 @@ for(var i=0;i<updateBtns.length;i++) {
     updateBtns[i].addEventListener('click', function(){
         var productId = this.dataset.product
         var action = this.dataset.action
-        console.log('productId',productId, 'Action',action);
-        console.log('USER:', user)
+
         if (user == 'AnonymousUser') {
             console.log("User not logged in");
         }else {
@@ -13,7 +12,6 @@ for(var i=0;i<updateBtns.length;i++) {
         }
     })
 }
-
 
 function updateUserOrder(productId, action){
     console.log("User is logged in Sending data in...");
@@ -35,3 +33,4 @@ function updateUserOrder(productId, action){
     });
 
 }
+

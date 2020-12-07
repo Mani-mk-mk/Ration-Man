@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,21 +62,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="">Home <br /><span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        List
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Create list</a>
-                        <a class="dropdown-item" href="#">Edit list</a>
-                    </div>
+                    <a class="nav-link" href="{% url 'home-page' %}">Home <br /><span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="{% url 'category' %}">Categories</a>
-                </li>
+                    <a class="nav-link " href="{% url 'list' %}">List</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="{% url 'trolley' %}">Trolley</a>
@@ -122,6 +112,7 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
     <script type=text/javascript src="{% static 'js/cart.js' %}"></script>
+    <script type=text/javascript src="{% static 'js/list.js' %}"></script>
 
 </body>
 

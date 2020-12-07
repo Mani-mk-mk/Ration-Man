@@ -1,0 +1,33 @@
+button.btn-primary {
+    background-color: #008CBA;
+}
+
+.card-img-top {
+    width: 286px;
+    height: 286px;
+    margin-top: 8px;
+    padding: 5px;
+}
+
+.card-body {
+    height: 200px;
+}
+
+.card-title {
+    height: 80px;
+    margin: 0px;
+}
+
+.noresult {
+    font-size: 20px;
+    font-style: italic;
+    margin: 10px;
+    padding: 10px;
+}
+
+.stylelist {
+    font-size: 20px;
+    font-style: italic;
+    margin: 10px;
+    padding: 10px;
+}

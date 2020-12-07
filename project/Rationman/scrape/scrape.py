@@ -19,7 +19,7 @@ def flipkart(url):
     price = p.strip()
     print(price)
     pricec = price.strip("₹")
-    return int(pricec)
+    return float(pricec)
 
 
 
@@ -28,20 +28,27 @@ def amazon(url):
     page = requests.get(url, headers = headers)
     soup = BeautifulSoup(page.content, 'html.parser')
     try:
-        prices = soup.find_all("span",{"id": "priceblock_ourprice priceblock_saleprice"})
+        prices = soup.find_all("span",{"id": "priceblock_ourprice"})
         p = prices[0].text.strip()
         price = p.strip()
         pricec = price[2:]
-        pricex = int(float(pricec))
+        pricex = float(pricec)
     except:
         try:
             prices = soup.find_all("span",{"class": "a-color-price"})
             p = prices[0].text.strip()
             price = p.strip()
             pricec = price[2:]
-            pricex = int(float(pricec))
+            pricex = float(pricec)
         except:
-            pricex = 0
+            try:
+                prices = soup.find_all("span",{"id": "priceblock_saleprice"})
+                p = prices[0].text.strip()
+                price = p.strip()
+                pricec = price[2:]
+                pricex = float(pricec)
+            except:
+                pricex = 0
     print(pricex)
     return (pricex)
 
@@ -58,7 +65,7 @@ def bigb(url):
     price = p.strip()
     print(price)
     pricec = price.strip("Rs ")
-    return int(float(pricec))
+    return float(pricec)
 
 
 #flipkart(url_flipkart)

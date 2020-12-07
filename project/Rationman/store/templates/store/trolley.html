@@ -18,17 +18,17 @@
                     <h5>Quantity: <strong>{{ order.get_cart_items }}</strong> </h5>
                 </th>
                 <th class="bestbuy">
-                    <h5>Best price: <strong>₹ {{ order.get_cart_total }}</strong></h5>
+                    <h5>Best price: <strong>₹ {{ order.best_buy }}</strong></h5>
                 </th>
                 <th class="offer">
-                    <h5>Offered By: <strong> Flipkart </strong> </h5>
+                    <h5>Offered By: <strong> {{order.offer}} </strong> </h5>
                 </th>
-                <th class="hidden-element">AKANJGDSHBJNXZSJVCHBJCBJIDCIsjKDCINSDK</th>
+                <th class="hidden-element">AKANJGDSHBJNSJVCHBJCBJIDCIsjKDCINSDK</th>
                 <th class="wow" colspan="3">
-                    <a href="" class="btn btn-success float-right">Set Reminder</a>
+                    <a href="{% url 'reminder' %}" class="btn btn-success float-right">Set Reminder</a>
                 </th>
                 <th class="wow" colspan="2">
-                    <a href="" class="btn btn-success float-right">Checkout</a>
+                    <a href="{% url 'checkout_amazon' %}" class="btn btn-success float-right">Checkout</a>
                 </th>
             </tr>
         </table>
@@ -71,19 +71,19 @@
                 <h6>{{ item.product.product_name }}</h6>
             </td>
             <td class=" quantity row-element">
-                <i class="fa fa-plus update-cart" data-action="add" data-product={{ item.product.id }}
-                    aria-hidden="true"></i>
-                {{ item.quantity }}
                 <i class="fa fa-minus update-cart" data-action="remove" data-product={{ item.product.id }}
-                    aria-hidden="true"></i>
+                aria-hidden="true"></i>
+                {{ item.quantity }}
+                <i class="fa fa-plus update-cart" data-action="add" data-product={{ item.product.id }}
+                aria-hidden="true"></i>
             </td>
-            <td class="shopprice row-element">
+            <td class="shopprice flipkart row-element">
                 ₹ {{item.total_flipkart}}
             </td>
-            <td class="shopprice row-element">
+            <td class="shopprice amazon row-element">
                 ₹ {{item.total_amazon}}
             </td>
-            <td class="shopprice row-element">
+            <td class="shopprice bigb row-element">
                 ₹ {{item.total_bigb}}
             </td>
             <td class="row-element">
@@ -93,6 +93,8 @@
 
         </tr>
         {% endfor %}
+
+
         <tr class="total_tab row-element">
             <td></td>
             <td class="tot">
@@ -104,6 +106,22 @@
             <td class="total-shop"> ₹ {{order.bigb_cart_total}}</td>
             <td></td>
         </tr>
+
+        <tr class="checkout-tab total_tab row-element">
+            <td></td>
+            <td class="tot">
+                <h4> Checkout </h4>
+            </td>
+            <td></td>
+            <td class="total-shop checkout checkout-flipkart"> <a href="{% url 'checkout_flipkart' %}" class="btn btn-success ">Checkout from Flipkart</a>
+            </td>
+            <td class="total-shop checkout checkout-amazon"> <a href="{% url 'checkout_amazon' %}" class="btn btn-success ">Checkout from Amazon</a>
+            </td>
+            <td class="total-shop chekout checkout-bigb"> <a href="{% url 'checkout_bigb' %}" class="btn btn-success ">Checkout from BigBasket</a>
+            </td>
+            <td></td>
+        </tr>
+
     </table>
 
 </div>

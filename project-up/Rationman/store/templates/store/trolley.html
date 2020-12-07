@@ -1,0 +1,127 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{%  block title%}
+<title>Your Trolley</title>
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="cart-row">
+        <a href="{% url 'home-page' %}" class="btn btn-outline-dark">&#x2190; Continue Shopping</a>
+        <br>
+        <br>
+
+        <table>
+            <tr>
+                <th class="best">
+                    <h5>Quantity: <strong>{{ order.get_cart_items }}</strong> </h5>
+                </th>
+                <th class="bestbuy">
+                    <h5>Best price: <strong>₹ {{ order.get_cart_total }}</strong></h5>
+                </th>
+                <th class="offer">
+                    <h5>Offered By: <strong> Flipkart </strong> </h5>
+                </th>
+                <th class="hidden-element">AKANJGDSHBJNXZSJVCHBJCBJIDCIsjKDCINSDK</th>
+                <th class="wow" colspan="3">
+                    <a href="{% url 'reminder' %}" class="btn btn-success float-right">Set Reminder</a>
+                </th>
+                <th class="wow" colspan="2">
+                    <a href="{% url 'checkout_amazon' %}" class="btn btn-success float-right">Checkout</a>
+                </th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<br>
+
+<div class="container">
+    <table class="box-element">
+        <tr class="header-row">
+            <th class="cart-order image">
+                <h5>Image</h5>
+            </th>
+            <th class="cart-order cart-order-prod">
+                <h5>Products</h5>
+            </th>
+            <th class="cart-order">
+                <h5>Quantity</h5>
+            </th>
+            <th class="cart-order">
+                <img class="logo-image" src="{% static 'images/flipkart-226594.png' %}" alt="flipkart-logo">
+            </th>
+            <th class="cart-order">
+                <img class="logo-image" src="{% static 'images/Colors-Amazon-Logo.jpg' %}" alt="amazon-logo">
+            </th>
+            <th class="cart-order">
+                <img class="logo-image" src="{% static 'images/bigbasket-logo.jpg' %} " alt="bigbasket-logo">
+            </th>
+            <th class="cart-order">
+                <h5>Remove</h5>
+            </th>
+        </tr>
+        {% for item in items|slice:"0:" %}
+        <tr class="rows">
+            <td class=" row-image row-element">
+                <img class="img-pd" src="/media/{{ item.product.product_image }}" alt="">
+            </td>
+            <td class="row-element-prod">
+                <h6>{{ item.product.product_name }}</h6>
+            </td>
+            <td class=" quantity row-element">
+                <i class="fa fa-minus update-cart" data-action="remove" data-product={{ item.product.id }}
+                    aria-hidden="true"></i>
+                {{ item.quantity }}
+                <i class="fa fa-plus update-cart" data-action="add" data-product={{ item.product.id }}
+                    aria-hidden="true"></i>
+            </td>
+            <td class="shopprice flipkart row-element">
+                ₹ {{item.total_flipkart}}
+            </td>
+            <td class="shopprice amazon row-element">
+                ₹ {{item.total_amazon}}
+            </td>
+            <td class="shopprice bigb row-element">
+                ₹ {{item.total_bigb}}
+            </td>
+            <td class="row-element">
+                <button class="btn update-cart" data-action="remove" data-product={{ item.product.id }}> <i
+                        class="fa fa-trash" aria-hidden="true"></i> </button>
+            </td>
+
+        </tr>
+        {% endfor %}
+        <tr class="total_tab row-element">
+            <td></td>
+            <td class="tot">
+                <h4> Total </h4>
+            </td>
+            <td></td>
+            <td class="total-shop"> ₹ {{order.flipkart_cart_total}}</td>
+            <td class="total-shop"> ₹ {{order.amazon_cart_total}}</td>
+            <td class="total-shop"> ₹ {{order.bigb_cart_total}}</td>
+            <td></td>
+        </tr>
+
+        <tr class="checkout-tab total_tab row-element">
+            <td></td>
+            <td class="tot">
+                <h4> Checkout </h4>
+            </td>
+            <td></td>
+            <td class="total-shop checkout checkout-flipkart"> <a href="{% url 'checkout_flipkart' %}" class="btn btn-success ">Checkout from Flipkart</a>
+            </td>
+            <td class="total-shop checkout checkout-amazon"> <a href="{% url 'checkout_amazon' %}" class="btn btn-success ">Checkout from Amazon</a>
+            </td>
+            <td class="total-shop chekout checkout-bigb"> <a href="{% url 'checkout_bigb' %}" class="btn btn-success ">Checkout from BigBasket</a>
+            </td>
+            <td></td>
+        </tr>
+
+    </table>
+
+</div>
+<link rel="stylesheet" href="{% static 'store/styles_trolley.css' %}">
+{% endblock content %}

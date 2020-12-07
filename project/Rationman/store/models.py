@@ -59,6 +59,31 @@ class Order(models.Model):
         total = sum([item.quantity for item in orderitem])
         return total
 
+    @property
+    def best_buy(self):
+        orderitem = self.orderitem_set.all()
+        total_a = sum([item.total_amazon for item in orderitem])
+        total_f = sum([item.total_flipkart for item in orderitem])
+        total_b = sum([item.total_bigb for item in orderitem])
+        if total_a <= total_f and total_a <= total_b:
+            return total_a
+        elif total_f <= total_b:
+            return total_f
+        else:
+            return total_b
+
+    @property
+    def offer(self):
+        orderitem = self.orderitem_set.all()
+        total_a = sum([item.total_amazon for item in orderitem])
+        total_f = sum([item.total_flipkart for item in orderitem])
+        total_b = sum([item.total_bigb for item in orderitem])
+        if total_a <= total_f and total_a <= total_b:
+            return "Amazon"
+        elif total_f <= total_b:
+            return "Flipkart"
+        else:
+            return "BigBasket"
 
 
 class OrderItem(models.Model):
@@ -67,6 +92,88 @@ class OrderItem(models.Model):
     quantity = models.IntegerField(default=1, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
+
+    @property
+    def total_flipkart(self):
+        total = self.product.price_flipkart * self.quantity
+        return total
+    
+    @property
+    def total_amazon(self):
+        total = self.product.price_amazon * self.quantity
+        return total
+
+    @property
+    def total_bigb(self):
+        total = self.product.price_bigb * self.quantity
+        return total
+
+
+class List(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    used = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return str(self.id)
+
+    @property
+    def flipkart_cart_total(self):
+        listitem = self.listitem_set.all()
+        total = sum([item.total_flipkart for item in listitem])
+        return total
+
+    @property
+    def amazon_cart_total(self):
+        listitem = self.listitem_set.all()
+        total = sum([item.total_amazon for item in listitem])
+        return total
+
+    @property
+    def bigb_cart_total(self):
+        listitem = self.listitem_set.all()
+        total = sum([item.total_bigb for item in listitem])
+        return total
+
+    @property
+    def get_cart_items(self):
+        listitem = self.listitem_set.all()
+        total = sum([item.quantity for item in listitem])
+        return total
+
+    @property
+    def best_buy(self):
+        listitem = self.listitem_set.all()
+        total_a = sum([item.total_amazon for item in listitem])
+        total_f = sum([item.total_flipkart for item in listitem])
+        total_b = sum([item.total_bigb for item in listitem])
+        if total_a <= total_f and total_a <= total_b:
+            return total_a
+        elif total_f <= total_b:
+            return total_f
+        else:
+            return total_b
+
+    @property
+    def offer(self):
+        listitem = self.listitem_set.all()
+        total_a = sum([item.total_amazon for item in listitem])
+        total_f = sum([item.total_flipkart for item in listitem])
+        total_b = sum([item.total_bigb for item in listitem])
+        if total_a <= total_f and total_a <= total_b:
+            return "Amazon"
+        elif total_f <= total_b:
+            return "Flipkart"
+        else:
+            return "BigBasket"
+
+
+
+class ListItem(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    list = models.ForeignKey(List, on_delete=models.SET_NULL, null=True)
+    quantity = models.IntegerField(default=1, null=True, blank=True)
+    date_added = models.DateTimeField(auto_now_add=True)
 
     @property
     def total_flipkart(self):

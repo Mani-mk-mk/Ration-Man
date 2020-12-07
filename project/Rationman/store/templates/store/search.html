@@ -37,6 +37,9 @@
                     <h6 class="quantity">Quantity: {{ i.product_quantity }}</h6>
                     <button data-product={{ i.id }} data-action="add " class=" btn btn-primary update-cart ">Add to
                         Trolley</button>
+                    <button data-product={{ i.id }} data-action="plus " class=" btn btn-primary update-list ">Add to
+                        List</button>
+    
                 </div>
             </div>
         </div>
@@ -44,6 +47,5 @@
 
     </div>
 </div>
-
 
 {% endblock content %}
