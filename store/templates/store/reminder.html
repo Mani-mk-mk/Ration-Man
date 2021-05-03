@@ -1,0 +1,25 @@
+{% extends "store/layout.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}
+<title>Set Reminder</title>
+{% endblock title%}
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'store/reminder.css' %}">
+<div class="content-section">
+  <form method="post" class="my-2 my-lg-0" >
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Set Reminder</legend>
+      {{ form|crispy }}
+    </fieldset>
+    <h4>Your grocery will last for?</h4>  <input type="text" name="time"><br>
+    <div class="form-group mt-5">
+      <button type="submit" name="submit" class="btn btn-outline-info">Submit</button>
+    </div>
+  </form>
+</div>
+{% endblock content %}

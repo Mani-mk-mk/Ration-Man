@@ -1,0 +1,25 @@
+.collection{
+    width: 900px;
+    height: 160px;
+    box-shadow: 0 0 5px;
+    margin-top: 15px;
+}
+h6{
+    font-size: 18px;
+}
+.row{
+    display: inline-block;
+    margin: 20px;
+    margin-bottom: 5px;
+}
+.imagetag{
+    width: 150px;
+    height: 150px;
+}
+.description{
+    width: 350px;
+    margin-top: 5px;
+}
+.orderimage{
+    margin-bottom: 125px;
+}

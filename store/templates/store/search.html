@@ -1,0 +1,57 @@
+{% extends 'store/base.html'%}
+{% load static %}
+
+{% block title %}
+<title>Search Results</title>
+{% endblock title %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'store/styles_product.css' %}">
+<div class="container">
+    {% if messages %}
+    {% for message in messages %}
+    {{message}}
+    {% endfor %}
+    {% endif %}
+    <h2 class="text-left">Search Results: </h2>
+    {% if product|length < 1 %}
+    <p class="noresult">No search results found. <br>
+        <br>
+        Your search query: <strong>{{query}}</strong> did not match any of the Products. <br>
+        <strong>Suggestions: </strong>
+        <ul>
+            <li class="stylelist">
+                Try Using different keywords
+            </li>
+        </ul>
+    </p>
+    {% endif %}
+    <div class="row">
+        {% for i in product|slice:"0:" %}
+
+        <div class="col-md-3 col-sm-12">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="/media/{{ i.product_image }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ i.product_name }}</h5>
+                    <h6 class="quantity">Quantity: {{ i.product_quantity }}</h6>
+                    <div class="dropdown">
+                        <button data-product={{ i.id }} data-action="add " class=" btn update-cart btn-primary">Add to
+                            Trolley</button>            
+                        <button class="btn btn-primary dropdown-toggle lists" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lists
+                        </button>
+                        <div class="dropdown-menu dropdown-button-list" aria-labelledby="dropdownMenu2">
+                            <button data-product={{ i.id }} data-action="plus" class=" btn dropdown-item update-list btn-primary" type = "button">Add to Monthly List</button>            
+                            <button data-product={{ i.id }} data-action="plus" class=" btn dropdown-item update-monthly btn-primary" type = "button">Add to Weekly List</button>            
+                            <button data-product={{ i.id }} data-action="plus" class=" btn dropdown-item update-party btn-primary" type = "button">Add to Party List</button>            
+                        </div>
+                    </div>    
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock content %}

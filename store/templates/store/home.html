@@ -1,0 +1,30 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% block title %}
+<title>Home</title>
+{% endblock title %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'store/home.css' %}">
+
+<div class="container">
+    <h1 class="header text-center">Categories</h1>
+    <div class="row">
+        <div class="md-4 sm-12">
+            <a href="{% url 'cereals' %}"><img src="{% static 'store/cereals.png' %}" alt="Cereals-logo"></a>
+        </div>  
+        <div class="md-4 sm-12">
+            <a href="{% url 'diaryprod' %}"><img src="{% static 'store/diaryprod.jpg' %}" alt="Cereals-logo"></a>
+        </div>  
+        <div class="md-4 sm-12">
+            <a href="{% url 'drinks' %}"><img src="{% static 'store/drinks.jpg' %}" alt="Cereals-logo"></a>
+        </div>  
+        <div class="md-4 sm-12">
+            <a href="{% url 'snacks' %}"><img src="{% static 'store/snacks.png' %}" alt="Cereals-logo"></a>
+        </div>  
+        <div class="md-4 sm-12">
+            <a href="{% url 'spices' %}"><img src="{% static 'store/spices.png' %}" alt="Cereals-logo"></a>
+        </div>  
+    </div>
+</div>
+
+{% endblock content%}

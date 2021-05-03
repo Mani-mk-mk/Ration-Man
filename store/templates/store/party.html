@@ -1,0 +1,42 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}
+
+<title>Lists</title>
+
+{% endblock title %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'store/styles_product.css' %}">
+<div class="container">
+    
+    <div class="row">
+
+        {% for i in items %}
+
+        <div class="col-md-3 col-sm-12">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="/media/{{ i.product.product_image }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ i.product.product_name }}</h5>
+                    <h6 class="quantity">Quantity: {{ i.product.product_quantity }}</h6>
+                    <button data-product={{ i.product.id }} data-action=" addition " class="btn update-cart btn-primary">Add to
+                        Trolley</button>
+                    <button class="btn btn-primary update-party" data-action="minus" data-product={{ i.product.id }} > Remove</button>                    
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+    <a href="{% url 'partycart' %}" class="btn btn-primary ">Proceed to buy</a>
+</div>
+
+<script src='{% static "js/party.js" %}'></script>
+
+{% endblock content%}
+
+<!--|slice:"0:" -->

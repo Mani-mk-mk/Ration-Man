@@ -1,0 +1,41 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{%  block title%}
+<title>Your Order</title>
+{% endblock title %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'store/styles_order.css' %}">
+
+<div class="container">
+    <div class="col-md-3 col-sm-12">
+        {% for i in previtem %}
+        <div class="collection">
+            <div class="row imagetag" float="left">
+                <img class="orderimage" src="/media/{{ i.product.product_image }}" width="120px" height="120px" alt="product">
+            </div>
+            <div class="row description" float="left">
+                <p>
+                    <h5>Product Name: </h5>
+                    <h6>{{ i.product.product_name }}</h6>
+                    <h5>Net Wt. : </h5>
+                    <h6>{{ i.product.product_quantity }}</h6>
+                </p>
+            </div>
+            <div class="row orderdetails" float="left">
+                <p>
+                    <!--<h5>Quantity: {{ i.quantity }}</h5>-->
+                    <h5>Ordered From: </h5>
+                    <h6 class="companyname"> {{ i.Ordered_from }} </h6>
+                    <h5>Ordered On: </h5>
+                    <h6 class="dateadded"> {{ i.date_added }} </h6>
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<script type=text/javascript src="{% static 'js/orders.js' %}"></script>
+
+{% endblock content %}
